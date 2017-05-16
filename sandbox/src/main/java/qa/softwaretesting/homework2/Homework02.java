@@ -1,4 +1,4 @@
-package qa.softwaretesting.homeweork2;
+package qa.softwaretesting.homework2;
 
 public class Homework02 {
 
