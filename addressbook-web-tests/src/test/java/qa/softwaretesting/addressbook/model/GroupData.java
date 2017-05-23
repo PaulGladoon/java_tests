@@ -1,4 +1,4 @@
-package qa.softwaretesting.addressbook;
+package qa.softwaretesting.addressbook.model;
 
 public class GroupData {
   private final String name;
