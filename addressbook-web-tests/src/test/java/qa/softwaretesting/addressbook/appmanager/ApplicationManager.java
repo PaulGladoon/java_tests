@@ -10,7 +10,7 @@ public class ApplicationManager {
   FirefoxDriver wd;
 
   private SessionHelper sessionHelper;
-  private NaviationHelper naviationHelper;
+  private NavigationHelper navigationHelper;
   private GroupHelper groupHelper;
 
   public void init() {
@@ -18,7 +18,7 @@ public class ApplicationManager {
     wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
     wd.get("http://macbook-pro-paul.local/addressbook/index.php");
     groupHelper = new GroupHelper(wd);
-    naviationHelper = new NaviationHelper(wd);
+    navigationHelper = new NavigationHelper(wd);
     sessionHelper = new SessionHelper(wd);
     sessionHelper.login("admin", "secret");
   }
@@ -31,7 +31,7 @@ public class ApplicationManager {
     return groupHelper;
   }
 
-  public NaviationHelper getNaviationHelper() {
-    return naviationHelper;
+  public NavigationHelper getNavigationHelper() {
+    return navigationHelper;
   }
 }

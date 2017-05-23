@@ -3,9 +3,9 @@ package qa.softwaretesting.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class NaviationHelper extends HelperBase{
+public class NavigationHelper extends HelperBase{
 
-  public NaviationHelper(FirefoxDriver wd) {
+  public NavigationHelper(FirefoxDriver wd) {
     super(wd);
   }
 
