@@ -1,4 +1,4 @@
-package qa.softwaretesting.homework4;
+package qa.softwaretesting.addressbook.model;
 
 public class ContactData {
   private final String firstName;
