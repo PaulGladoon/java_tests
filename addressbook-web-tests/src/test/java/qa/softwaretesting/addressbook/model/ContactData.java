@@ -15,11 +15,12 @@ public class ContactData {
   private final String email;
   private final String homepage;
   private final String year;
+  private final String year2;
   private final String address2;
   private final String phone2;
   private final String notes;
 
-  public ContactData(String firstName, String middleName, String lastName, String nickname, String title, String company, String address, String home, String mobile, String work, String fax, String email, String homepage, String year, String address2, String phone2, String notes) {
+  public ContactData(String firstName, String middleName, String lastName, String nickname, String title, String company, String address, String home, String mobile, String work, String fax, String email, String homepage, String year, String year2, String address2, String phone2, String notes) {
     this.firstName = firstName;
     this.middleName = middleName;
     this.lastName = lastName;
@@ -34,6 +35,7 @@ public class ContactData {
     this.email = email;
     this.homepage = homepage;
     this.year = year;
+    this.year2 = year2;
     this.address2 = address2;
     this.phone2 = phone2;
     this.notes = notes;
@@ -93,6 +95,10 @@ public class ContactData {
 
   public String getYear() {
     return year;
+  }
+
+  public String getYear2() {
+    return year2;
   }
 
   public String getAddress2() {
