@@ -1,9 +1,13 @@
 package qa.softwaretesting.addressbook.appmanager;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
 import qa.softwaretesting.addressbook.model.ContactData;
+
+import java.sql.Time;
+import java.util.Calendar;
 
 public class ContactHelper extends HelperBase{
 
@@ -11,7 +15,7 @@ public class ContactHelper extends HelperBase{
     super(wd);
   }
 
-  public void fillContactForms(ContactData contactData) {
+  public void fillContactForms(ContactData contactData, boolean creation) {
     type(By.name("firstname"), contactData.getFirstName());
     type(By.name("middlename"), contactData.getMiddleName());
     type(By.name("lastname"), contactData.getLastName());
@@ -31,6 +35,11 @@ public class ContactHelper extends HelperBase{
     type(By.name("byear"), contactData.getYear());
     click(By.xpath("//div[@id='content']/form/select[3]//option[3]"));
     click(By.xpath("//div[@id='content']/form/select[4]//option[2]"));
+    if(creation) {
+      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+    } else {
+      Assert.assertFalse(isElementPresent(By.name("new_group")));
+    }
     type(By.name("ayear"), contactData.getYear2());
     type(By.name("address2"), contactData.getAddress2());
     type(By.name("phone2"), contactData.getPhone2());

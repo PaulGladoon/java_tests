@@ -3,6 +3,7 @@ package qa.softwaretesting.addressbook.model;
 public class ContactData {
   private final String firstName;
   private final String middleName;
+  private String group;
   private final String lastName;
   private final String nickname;
   private final String title;
@@ -20,9 +21,10 @@ public class ContactData {
   private final String phone2;
   private final String notes;
 
-  public ContactData(String firstName, String middleName, String lastName, String nickname, String title, String company, String address, String home, String mobile, String work, String fax, String email, String homepage, String year, String year2, String address2, String phone2, String notes) {
+  public ContactData(String firstName, String middleName, String group, String lastName, String nickname, String title, String company, String address, String home, String mobile, String work, String fax, String email, String homepage, String year, String year2, String address2, String phone2, String notes) {
     this.firstName = firstName;
     this.middleName = middleName;
+    this.group = group;
     this.lastName = lastName;
     this.nickname = nickname;
     this.title = title;
@@ -97,9 +99,7 @@ public class ContactData {
     return year;
   }
 
-  public String getYear2() {
-    return year2;
-  }
+  public String getYear2() { return year2; }
 
   public String getAddress2() {
     return address2;
@@ -111,5 +111,8 @@ public class ContactData {
 
   public String getNotes() {
     return notes;
+  }
+
+  public String getGroup() { return group;
   }
 }
