@@ -6,9 +6,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 import qa.softwaretesting.addressbook.model.ContactData;
 
-import java.sql.Time;
-import java.util.Calendar;
-
 public class ContactHelper extends HelperBase{
 
   public ContactHelper(WebDriver wd) {
@@ -52,6 +49,15 @@ public class ContactHelper extends HelperBase{
 
   public void updateContactCreation() {
     click(By.name("update"));
+  }
+
+  public void contactCreation(ContactData contact, boolean creation) {
+    fillContactForms(contact, creation);
+    submitContactCreation();
+  }
+
+  public boolean isThereAContact() {
+    return isElementPresent(By.name("entry"));
   }
 
 }
