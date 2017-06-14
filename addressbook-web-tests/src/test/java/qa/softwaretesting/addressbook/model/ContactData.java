@@ -1,6 +1,7 @@
 package qa.softwaretesting.addressbook.model;
 
 public class ContactData {
+  private int id;
   private final String firstName;
   private final String middleName;
   private String group;
@@ -21,7 +22,8 @@ public class ContactData {
   private final String phone2;
   private final String notes;
 
-  public ContactData(String firstName, String middleName, String group, String lastName, String nickname, String title, String company, String address, String home, String mobile, String work, String fax, String email, String homepage, String year, String year2, String address2, String phone2, String notes) {
+  public ContactData(int id, String firstName, String middleName, String group, String lastName, String nickname, String title, String company, String address, String home, String mobile, String work, String fax, String email, String homepage, String year, String year2, String address2, String phone2, String notes) {
+    this.id = id;
     this.firstName = firstName;
     this.middleName = middleName;
     this.group = group;
@@ -42,6 +44,46 @@ public class ContactData {
     this.phone2 = phone2;
     this.notes = notes;
   }
+
+  public ContactData(String firstName, String middleName, String group, String lastName, String nickname, String title, String company, String address, String home, String mobile, String work, String fax, String email, String homepage, String year, String year2, String address2, String phone2, String notes) {
+    this.id = Integer.MAX_VALUE;
+    this.firstName = firstName;
+    this.middleName = middleName;
+    this.group = group;
+    this.lastName = lastName;
+    this.nickname = nickname;
+    this.title = title;
+    this.company = company;
+    this.address = address;
+    this.home = home;
+    this.mobile = mobile;
+    this.work = work;
+    this.fax = fax;
+    this.email = email;
+    this.homepage = homepage;
+    this.year = year;
+    this.year2 = year2;
+    this.address2 = address2;
+    this.phone2 = phone2;
+    this.notes = notes;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+
+    ContactData that = (ContactData) o;
+
+    return firstName != null ? firstName.equals(that.firstName) : that.firstName == null;
+  }
+
+  @Override
+  public int hashCode() {
+    return firstName != null ? firstName.hashCode() : 0;
+  }
+
+  public int getId() { return id; }
 
   public String getFirstName() {
     return firstName;
@@ -114,5 +156,17 @@ public class ContactData {
   }
 
   public String getGroup() { return group;
+  }
+
+  @Override
+  public String toString() {
+    return "ContactData{" +
+            "id=" + id +
+            ", firstName='" + firstName + '\'' +
+            '}';
+  }
+
+  public void setId(int id) {
+    this.id = id;
   }
 }

@@ -1,7 +1,10 @@
 package qa.softwaretesting.addressbook.tests;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import qa.softwaretesting.addressbook.model.ContactData;
+
+import java.util.List;
 
 public class ContactDeletionTests extends TestBase {
 
@@ -15,6 +18,8 @@ public class ContactDeletionTests extends TestBase {
     app.getNavigationHelper().selectAllContacts();
     app.getNavigationHelper().submitDeletion();
     app.getNavigationHelper().acceptInDeletionWindow();
+    List<ContactData> contactListAfterDeletion = app.getContactHelper().getContactList();
+    Assert.assertEquals(contactListAfterDeletion.size(), 0);
   }
 
 }
