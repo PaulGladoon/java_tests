@@ -61,7 +61,10 @@ public class ContactHelper extends HelperBase{
   }
 
   public void selectContact(int index) {
-    wd.findElements(By.name("selected[]")).get(index).click();
+    List<WebElement> checkBoxes = wd.findElements(By.name("selected[]"));
+    WebElement checkBox = checkBoxes.get(index);
+    WebElement row = checkBox.findElement(By.xpath("../.."));
+    row.findElements(By.tagName("td")).get(7).click();
   }
 
   public boolean isThereAContact() {
