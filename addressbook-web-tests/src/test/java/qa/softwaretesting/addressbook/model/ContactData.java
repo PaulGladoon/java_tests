@@ -76,6 +76,32 @@ public class ContactData {
     return result;
   }
 
+  @Override
+  public String toString() {
+    return "ContactData{" +
+            "id=" + id +
+            ", firstName='" + firstName + '\'' +
+            ", middleName='" + middleName + '\'' +
+            ", group='" + group + '\'' +
+            ", lastName='" + lastName + '\'' +
+            ", nickname='" + nickname + '\'' +
+            ", title='" + title + '\'' +
+            ", company='" + company + '\'' +
+            ", address='" + address + '\'' +
+            ", home='" + home + '\'' +
+            ", mobile='" + mobile + '\'' +
+            ", work='" + work + '\'' +
+            ", fax='" + fax + '\'' +
+            ", email='" + email + '\'' +
+            ", homepage='" + homepage + '\'' +
+            ", year='" + year + '\'' +
+            ", year2='" + year2 + '\'' +
+            ", address2='" + address2 + '\'' +
+            ", phone2='" + phone2 + '\'' +
+            ", notes='" + notes + '\'' +
+            '}';
+  }
+
   public int getId() { return id; }
 
   public String getFirstName() {
@@ -149,14 +175,6 @@ public class ContactData {
   }
 
   public String getGroup() { return group;
-  }
-
-  @Override
-  public String toString() {
-    return "ContactData{" +
-            "id=" + id +
-            ", firstName='" + firstName + '\'' +
-            '}';
   }
 
   public ContactData withFirstName(String firstName) {
