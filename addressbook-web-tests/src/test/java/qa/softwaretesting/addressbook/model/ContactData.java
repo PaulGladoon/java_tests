@@ -2,71 +2,25 @@ package qa.softwaretesting.addressbook.model;
 
 public class ContactData {
   private int id;
-  private final String firstName;
-  private final String middleName;
+  private String firstName;
+  private String middleName;
   private String group;
-  private final String lastName;
-  private final String nickname;
-  private final String title;
-  private final String company;
-  private final String address;
-  private final String home;
-  private final String mobile;
-  private final String work;
-  private final String fax;
-  private final String email;
-  private final String homepage;
-  private final String year;
-  private final String year2;
-  private final String address2;
-  private final String phone2;
-  private final String notes;
-
-  public ContactData(int id, String firstName, String middleName, String group, String lastName, String nickname, String title, String company, String address, String home, String mobile, String work, String fax, String email, String homepage, String year, String year2, String address2, String phone2, String notes) {
-    this.id = id;
-    this.firstName = firstName;
-    this.middleName = middleName;
-    this.group = group;
-    this.lastName = lastName;
-    this.nickname = nickname;
-    this.title = title;
-    this.company = company;
-    this.address = address;
-    this.home = home;
-    this.mobile = mobile;
-    this.work = work;
-    this.fax = fax;
-    this.email = email;
-    this.homepage = homepage;
-    this.year = year;
-    this.year2 = year2;
-    this.address2 = address2;
-    this.phone2 = phone2;
-    this.notes = notes;
-  }
-
-  public ContactData(String firstName, String middleName, String group, String lastName, String nickname, String title, String company, String address, String home, String mobile, String work, String fax, String email, String homepage, String year, String year2, String address2, String phone2, String notes) {
-    this.id = Integer.MAX_VALUE;
-    this.firstName = firstName;
-    this.middleName = middleName;
-    this.group = group;
-    this.lastName = lastName;
-    this.nickname = nickname;
-    this.title = title;
-    this.company = company;
-    this.address = address;
-    this.home = home;
-    this.mobile = mobile;
-    this.work = work;
-    this.fax = fax;
-    this.email = email;
-    this.homepage = homepage;
-    this.year = year;
-    this.year2 = year2;
-    this.address2 = address2;
-    this.phone2 = phone2;
-    this.notes = notes;
-  }
+  private String lastName;
+  private String nickname;
+  private String title;
+  private String company;
+  private String address;
+  private String home;
+  private String mobile;
+  private String work;
+  private String fax;
+  private String email;
+  private String homepage;
+  private String year;
+  private String year2;
+  private String address2;
+  private String phone2;
+  private String notes;
 
   @Override
   public boolean equals(Object o) {
@@ -75,12 +29,51 @@ public class ContactData {
 
     ContactData that = (ContactData) o;
 
-    return firstName != null ? firstName.equals(that.firstName) : that.firstName == null;
+    if (id != that.id) return false;
+    if (firstName != null ? !firstName.equals(that.firstName) : that.firstName != null) return false;
+    if (middleName != null ? !middleName.equals(that.middleName) : that.middleName != null) return false;
+    if (group != null ? !group.equals(that.group) : that.group != null) return false;
+    if (lastName != null ? !lastName.equals(that.lastName) : that.lastName != null) return false;
+    if (nickname != null ? !nickname.equals(that.nickname) : that.nickname != null) return false;
+    if (title != null ? !title.equals(that.title) : that.title != null) return false;
+    if (company != null ? !company.equals(that.company) : that.company != null) return false;
+    if (address != null ? !address.equals(that.address) : that.address != null) return false;
+    if (home != null ? !home.equals(that.home) : that.home != null) return false;
+    if (mobile != null ? !mobile.equals(that.mobile) : that.mobile != null) return false;
+    if (work != null ? !work.equals(that.work) : that.work != null) return false;
+    if (fax != null ? !fax.equals(that.fax) : that.fax != null) return false;
+    if (email != null ? !email.equals(that.email) : that.email != null) return false;
+    if (homepage != null ? !homepage.equals(that.homepage) : that.homepage != null) return false;
+    if (year != null ? !year.equals(that.year) : that.year != null) return false;
+    if (year2 != null ? !year2.equals(that.year2) : that.year2 != null) return false;
+    if (address2 != null ? !address2.equals(that.address2) : that.address2 != null) return false;
+    if (phone2 != null ? !phone2.equals(that.phone2) : that.phone2 != null) return false;
+    return notes != null ? notes.equals(that.notes) : that.notes == null;
   }
 
   @Override
   public int hashCode() {
-    return firstName != null ? firstName.hashCode() : 0;
+    int result = id;
+    result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
+    result = 31 * result + (middleName != null ? middleName.hashCode() : 0);
+    result = 31 * result + (group != null ? group.hashCode() : 0);
+    result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
+    result = 31 * result + (nickname != null ? nickname.hashCode() : 0);
+    result = 31 * result + (title != null ? title.hashCode() : 0);
+    result = 31 * result + (company != null ? company.hashCode() : 0);
+    result = 31 * result + (address != null ? address.hashCode() : 0);
+    result = 31 * result + (home != null ? home.hashCode() : 0);
+    result = 31 * result + (mobile != null ? mobile.hashCode() : 0);
+    result = 31 * result + (work != null ? work.hashCode() : 0);
+    result = 31 * result + (fax != null ? fax.hashCode() : 0);
+    result = 31 * result + (email != null ? email.hashCode() : 0);
+    result = 31 * result + (homepage != null ? homepage.hashCode() : 0);
+    result = 31 * result + (year != null ? year.hashCode() : 0);
+    result = 31 * result + (year2 != null ? year2.hashCode() : 0);
+    result = 31 * result + (address2 != null ? address2.hashCode() : 0);
+    result = 31 * result + (phone2 != null ? phone2.hashCode() : 0);
+    result = 31 * result + (notes != null ? notes.hashCode() : 0);
+    return result;
   }
 
   public int getId() { return id; }
@@ -166,7 +159,104 @@ public class ContactData {
             '}';
   }
 
-  public void setId(int id) {
+  public ContactData withFirstName(String firstName) {
+    this.firstName = firstName;
+    return this;
+  }
+
+  public ContactData withMiddleName(String middleName) {
+    this.middleName = middleName;
+    return this;
+  }
+
+  public ContactData withGroup(String group) {
+    this.group = group;
+    return this;
+
+  }
+
+  public ContactData withLastName(String lastName) {
+    this.lastName = lastName;
+    return this;
+  }
+
+  public ContactData withNickname(String nickname) {
+    this.nickname = nickname;
+    return this;
+  }
+
+  public ContactData withTitle(String title) {
+    this.title = title;
+    return this;
+  }
+
+  public ContactData withCompany(String company) {
+    this.company = company;
+    return this;
+  }
+
+  public ContactData withAddress(String address) {
+    this.address = address;
+    return this;
+  }
+
+  public ContactData withHome(String home) {
+    this.home = home;
+    return this;
+  }
+
+  public ContactData withMobile(String mobile) {
+    this.mobile = mobile;
+    return this;
+  }
+
+  public ContactData withWork(String work) {
+    this.work = work;
+    return this;
+  }
+
+  public ContactData withFax(String fax) {
+    this.fax = fax;
+    return this;
+  }
+
+  public ContactData withEmail(String email) {
+    this.email = email;
+    return this;
+  }
+
+  public ContactData withHomepage(String homepage) {
+    this.homepage = homepage;
+    return this;
+  }
+
+  public ContactData withYear(String year) {
+    this.year = year;
+    return this;
+  }
+
+  public ContactData withYear2(String year2) {
+    this.year2 = year2;
+    return this;
+  }
+
+  public ContactData withAddress2(String address2) {
+    this.address2 = address2;
+    return this;
+  }
+
+  public ContactData withPhone2(String phone2) {
+    this.phone2 = phone2;
+    return this;
+  }
+
+  public ContactData withNotes(String notes) {
+    this.notes = notes;
+    return this;
+  }
+
+  public ContactData withId(int id) {
     this.id = id;
+    return this;
   }
 }

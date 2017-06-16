@@ -1,11 +1,11 @@
 package qa.softwaretesting.addressbook.tests;
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import qa.softwaretesting.addressbook.model.GroupData;
 import qa.softwaretesting.addressbook.model.Groups;
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.testng.Assert.*;
 
 public class GroupDeletionTests extends TestBase {
 
@@ -23,7 +23,8 @@ public class GroupDeletionTests extends TestBase {
     GroupData deletedGroup = before.iterator().next();
     app.group().delete(deletedGroup);
     Groups after = app.group().all();
-    Assert.assertEquals(after.size(), before.size() - 1);
+
+    assertEquals(after.size(), before.size() - 1);
     assertThat(after, equalTo(before.withOut(deletedGroup)));
   }
 
