@@ -15,24 +15,7 @@ public class ContactCreationTests extends TestBase {
     app.goTo().addNewContact();
     ContactData contact = new ContactData()
             .withFirstName("Alex")
-            .withMiddleName("Popov")
-            .withGroup("test1")
-            .withLastName("Niclolaev")
-            .withNickname("Goblin")
-            .withTitle("Tool")
-            .withCompany("DoIt")
-            .withAddress("Propov")
-            .withHome("Odessa")
-            .withMobile("3355533")
-            .withWork("QA")
-            .withFax("44556677")
-            .withEmail("a@a.com")
-            .withHomepage("www.aaa.aa")
-            .withYear("1989")
-            .withYear2("33333")
-            .withAddress2("Dobr")
-            .withPhone2("3334455")
-            .withNotes("asdasd");
+            .withGroup("test1");
 
     app.contact().create(contact, true);
     app.goTo().homePage();

@@ -7,8 +7,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import qa.softwaretesting.addressbook.model.ContactData;
 import qa.softwaretesting.addressbook.model.Contacts;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class ContactHelper extends HelperBase{
@@ -61,9 +59,14 @@ public class ContactHelper extends HelperBase{
     submitContactCreation();
   }
 
-  public void selectContact(int index) {
-    List<WebElement> checkBoxes = wd.findElements(By.name("selected[]"));
-    WebElement checkBox = checkBoxes.get(index);
+  public void modify(ContactData contact, boolean creation) {
+    selectContactById(contact.getId());
+    fillContactForms(contact, creation);
+    click(By.name("update"));
+  }
+
+  public void selectContactById(int id) {
+    WebElement checkBox = wd.findElement(By.cssSelector("input[value='" + id + "']"));
     WebElement row = checkBox.findElement(By.xpath("../.."));
     row.findElements(By.tagName("td")).get(7).click();
   }

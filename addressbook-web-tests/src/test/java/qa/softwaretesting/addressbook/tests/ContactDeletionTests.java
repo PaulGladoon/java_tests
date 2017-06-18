@@ -4,6 +4,9 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import qa.softwaretesting.addressbook.model.ContactData;
 import qa.softwaretesting.addressbook.model.Contacts;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.testng.Assert.*;
 
 public class ContactDeletionTests extends TestBase {
@@ -14,6 +17,7 @@ public class ContactDeletionTests extends TestBase {
       app.goTo().addNewContact();
       app.contact().create(new ContactData()
               .withFirstName("Alex")
+              .withGroup("test1")
               .withMiddleName("Popovich"), true);
     }
   }
@@ -26,7 +30,7 @@ public class ContactDeletionTests extends TestBase {
     app.goTo().acceptInDeletionWindow();
     Contacts contactListAfterDeletion = app.contact().all();
 
-    assertEquals(contactListAfterDeletion.size(), 0);
+    assertThat(contactListAfterDeletion.size(), equalTo(0));
   }
 
 }
