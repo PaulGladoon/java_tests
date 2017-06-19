@@ -28,6 +28,8 @@ public class ContactHelper extends HelperBase{
     type(By.name("work"), contactData.getWork());
     type(By.name("fax"), contactData.getFax());
     type(By.name("email"), contactData.getEmail());
+    type(By.name("email2"), contactData.getEmail2());
+    type(By.name("email3"), contactData.getEmail3());
     type(By.name("homepage"), contactData.getHomepage());
     type(By.name("homepage"), contactData.getHomepage());
     click(By.xpath("//div[@id='content']/form/select[1]//option[3]"));
