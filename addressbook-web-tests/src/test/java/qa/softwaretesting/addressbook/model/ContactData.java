@@ -1,11 +1,16 @@
 package qa.softwaretesting.addressbook.model;
 
+import com.google.gson.annotations.Expose;
+
 import java.io.File;
 
 public class ContactData {
   private int id;
+  @Expose
   private String firstName;
+  @Expose
   private String middleName;
+  @Expose
   private String group;
   private String lastName;
   private String nickname;
