@@ -53,6 +53,7 @@
 
         <!-- Names the annotated entity class -->
         <mapping class="qa.softwaretesting.addressbook.model.GroupData"/>
+        <mapping class="qa.softwaretesting.addressbook.model.ContactData"/>
 
     </session-factory>
 

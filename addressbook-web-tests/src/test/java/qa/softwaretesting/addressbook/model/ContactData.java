@@ -1,45 +1,103 @@
 package qa.softwaretesting.addressbook.model;
 
 import com.google.gson.annotations.Expose;
+import org.hibernate.annotations.Type;
 
+import javax.persistence.*;
 import java.io.File;
 
+@Entity
+@Table(name = "addressbook")
 public class ContactData {
+
+  @Id
+  @Column(name = "id")
   private int id;
+
   @Expose
+  @Column(name = "firstname")
   private String firstName;
+
   @Expose
   private String middleName;
+
   @Expose
+  @Transient
   private String group;
+
+  @Column(name = "lastname")
   private String lastName;
+
+  @Transient
   private String nickname;
+
+  @Transient
   private String title;
+
+  @Transient
   private String company;
+
+  @Transient
   private String address;
+
+  @Column(name = "home")
+  @Type(type = "text")
   private String home;
+
+  @Column(name = "mobile")
+  @Type(type = "text")
   private String mobile;
+
+  @Column(name = "work")
+  @Type(type = "text")
   private String work;
+
+  @Transient
   private String fax;
+
+  @Transient
   private String email;
+
+  @Transient
   private String email2;
+
+  @Transient
   private String email3;
+
+  @Transient
   private String homepage;
+
+  @Transient
   private String year;
+
+  @Transient
   private String year2;
+
+  @Transient
   private String address2;
+
+  @Transient
   private String phone2;
+
+  @Transient
   private String notes;
+
+  @Transient
   private String allPhones;
+
+  @Transient
   private String allEmails;
-  private File photo;
+
+  @Column(name = "photo")
+  @Type(type = "text")
+  private String photo;
 
   public File getPhoto() {
-    return photo;
+    return new File(photo);
   }
 
   public ContactData withPhoto(File photo) {
-    this.photo = photo;
+    this.photo = photo.getPath();
     return this;
   }
 
