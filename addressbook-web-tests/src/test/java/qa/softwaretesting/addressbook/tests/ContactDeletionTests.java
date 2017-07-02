@@ -28,7 +28,7 @@ public class ContactDeletionTests extends TestBase {
     app.goTo().selectAllContacts();
     app.goTo().submitDeletion();
     app.goTo().acceptInDeletionWindow();
-    Thread.sleep(1000);
+    Thread.sleep(1000); // Добавил из-за того что удаление из БД происходит с 1 секундной задержкой
     Contacts contactListAfterDeletion = app.db().contacts();
 
     assertThat(contactListAfterDeletion.size(), equalTo(0));
