@@ -39,7 +39,10 @@ public class ContactHelper extends HelperBase{
     click(By.xpath("//div[@id='content']/form/select[3]//option[3]"));
     click(By.xpath("//div[@id='content']/form/select[4]//option[2]"));
     if(creation) {
-      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+      if (contactData.getGroups().size() > 0) {
+        Assert.assertTrue(contactData.getGroups().size() == 1);
+        new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroups().iterator().next().getName());
+      }
     } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
@@ -72,6 +75,12 @@ public class ContactHelper extends HelperBase{
     WebElement checkBox = wd.findElement(By.cssSelector("input[value='" + id + "']"));
     WebElement row = checkBox.findElement(By.xpath("../.."));
     row.findElements(By.tagName("td")).get(7).click();
+  }
+
+  public void selectContactByCheckbox(int id) {
+    WebElement checkBox = wd.findElement(By.cssSelector("input[value='" + id + "']"));
+    WebElement row = checkBox.findElement(By.xpath("../.."));
+    row.findElements(By.tagName("td")).get(0).click();
   }
 
   public boolean isThereAContact() {
@@ -146,5 +155,17 @@ public class ContactHelper extends HelperBase{
 //    wd.findElement(By.xpath(String.format("//input[@value='%s']/../../td[8]/a", id))).click();
 //    wd.findElement(By.xpath(String.format("//tr[.//input[@value='%s']]/td[8]/a", id))).click();
 //    wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']", id))).click();
+  }
+
+  public void addContactToGroup() {
+    wd.findElement(By.name("add")).click();
+  }
+
+  public void selectGroupFromGroupsList() {
+    wd.findElement(By.xpath("//form[@id='right']//select[normalize-space(.)='[all] [none] test1']//option[3]")).click();
+  }
+
+  public void deleteContactFromGroup() {
+    wd.findElement(By.name("remove")).click();
   }
 }

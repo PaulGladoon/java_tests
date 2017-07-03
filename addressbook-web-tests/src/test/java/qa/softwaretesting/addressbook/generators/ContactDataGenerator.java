@@ -62,7 +62,7 @@ public class ContactDataGenerator {
     System.out.println(new File(".").getAbsolutePath());
     Writer writer = new FileWriter(file);
     for (ContactData contact : contacts) {
-      writer.write(String.format("%s;%s;%s\n", contact.getFirstName(), contact.getMiddleName(), contact.getGroup()));
+//      writer.write(String.format("%s;%s;%s\n", contact.getFirstName(), contact.getMiddleName(), contact.getGroup()));
     }
     writer.close();
   }
@@ -72,8 +72,8 @@ public class ContactDataGenerator {
     for (int i = 0; i < count; i++) {
       contacts.add(new ContactData()
               .withFirstName(String.format("Alex %s", i))
-              .withMiddleName(String.format("Popov %s", i))
-              .withGroup("test 1"));
+              .withMiddleName(String.format("Popov %s", i)));
+//              .withGroup("test 1"));
     }
     return contacts;
   }
