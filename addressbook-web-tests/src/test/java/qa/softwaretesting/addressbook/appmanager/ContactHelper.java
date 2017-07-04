@@ -161,9 +161,9 @@ public class ContactHelper extends HelperBase{
     wd.findElement(By.name("add")).click();
   }
 
-  public void selectGroupFromGroupsList() {
+  public void selectGroupFromGroupsList(String groupName) {
     Select dropdown = new Select(wd.findElement(By.name("group")));
-    dropdown.selectByVisibleText("test1");
+    dropdown.selectByVisibleText(groupName);
 //    wd.findElement(By.xpath("//form[@id='right']//select[normalize-space(.)='[all] [none] test1']//option[3]")).click();
   }
 

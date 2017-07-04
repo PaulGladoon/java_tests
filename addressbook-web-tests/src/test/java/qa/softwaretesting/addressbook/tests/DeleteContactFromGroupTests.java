@@ -40,7 +40,8 @@ public class DeleteContactFromGroupTests extends TestBase {
   public void testDeleteContactFromGroup() throws InterruptedException {
     int beforeTable = app.db().contactsInGroups();
     app.goTo().homePage();
-    app.contact().selectGroupFromGroupsList();
+    String groupName = app.db().nameOfGroup();
+    app.contact().selectGroupFromGroupsList(groupName);
     Contacts contactInfo = app.db().contacts();
     ContactData randomId = contactInfo.iterator().next();
     ContactData contact = new ContactData().withId(randomId.getId());
