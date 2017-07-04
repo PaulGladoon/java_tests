@@ -162,7 +162,9 @@ public class ContactHelper extends HelperBase{
   }
 
   public void selectGroupFromGroupsList() {
-    wd.findElement(By.xpath("//form[@id='right']//select[normalize-space(.)='[all] [none] test1']//option[3]")).click();
+    Select dropdown = new Select(wd.findElement(By.name("group")));
+    dropdown.selectByVisibleText("test1");
+//    wd.findElement(By.xpath("//form[@id='right']//select[normalize-space(.)='[all] [none] test1']//option[3]")).click();
   }
 
   public void deleteContactFromGroup() {
