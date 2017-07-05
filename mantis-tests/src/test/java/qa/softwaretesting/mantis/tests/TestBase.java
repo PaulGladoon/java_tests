@@ -5,6 +5,7 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import qa.softwaretesting.mantis.appmanager.ApplicationManager;
 
+//Basic structure
 public class TestBase {
 
   protected static final ApplicationManager app

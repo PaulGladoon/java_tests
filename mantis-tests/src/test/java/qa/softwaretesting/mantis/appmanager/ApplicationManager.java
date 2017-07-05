@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
+// Basic structure
 public class ApplicationManager {
 
   private final Properties properties;
