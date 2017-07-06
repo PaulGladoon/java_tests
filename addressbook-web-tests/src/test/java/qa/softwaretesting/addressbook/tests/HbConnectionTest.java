@@ -42,7 +42,21 @@ public class HbConnectionTest {
 
     for (ContactData contact : result) {
       System.out.println(contact);
-      System.out.println(((GroupData) contact.getGroups().toArray()[0]).getName());
+      System.out.println(contact.getGroups().toArray()[0]);
+    }
+  }
+
+  @Test
+  private void test() {
+    String size = null;
+    Session session = sessionFactory.openSession();
+    session.beginTransaction();
+    List<ContactData> result = session.createQuery("from ContactData where deprecated = '0000-00-00'").list();
+    session.getTransaction().commit();
+    session.close();
+
+    for (ContactData contact : result) {
+      System.out.println(contact.getGroups());
     }
   }
 }

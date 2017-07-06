@@ -13,13 +13,23 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class AddContactToGroupTests extends TestBase {
 
   @BeforeMethod
-  public void ensurePreconditions() {
+  public void ensurePreconditions() throws InterruptedException {
     if (app.db().groups().size() == 0) {
       app.goTo().groupPage();
       app.group().create(new GroupData().withName("test1"));
     }
 
+    if (app.db().contactsInGroups() > 0) {
+      app.goTo().homePage();
+      app.goTo().selectAllContacts();
+      app.goTo().submitDeletion();
+      app.goTo().acceptInDeletionWindow();
+    }
+
+    Thread.sleep(1000);
+
     if (app.db().contacts().size() == 0) {
+      app.goTo().homePage();
       app.goTo().addNewContact();
       app.contact().create(new ContactData()
               .withFirstName("Alex")
