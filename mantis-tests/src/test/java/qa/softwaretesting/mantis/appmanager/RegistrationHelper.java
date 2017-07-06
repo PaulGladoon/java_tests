@@ -8,10 +8,10 @@ public class RegistrationHelper {
 
   public RegistrationHelper(ApplicationManager app) {
     this.app = app;
-    wd = app.wd;
+    wd = app.getDriver();
   }
 
   public void start(String username, String email) {
-    wd.get(app.getProperty("web.baseUrl") + "/login.php");
+    wd.get(app.getProperty("web.baseUrl") + "/signup_page.php");
   }
 }
