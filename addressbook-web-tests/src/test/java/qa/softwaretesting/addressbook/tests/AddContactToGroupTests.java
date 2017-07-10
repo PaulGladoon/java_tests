@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 import qa.softwaretesting.addressbook.model.ContactData;
 import qa.softwaretesting.addressbook.model.Contacts;
 import qa.softwaretesting.addressbook.model.GroupData;
+import qa.softwaretesting.addressbook.model.Groups;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -45,6 +46,7 @@ public class AddContactToGroupTests extends TestBase {
     app.goTo().homePage();
     Contacts before = app.db().contacts();
     int beforeTable = app.db().contactsInGroups();
+    Groups groupBefore = app.db().conGroup();
     ContactData randomId = before.iterator().next();
     ContactData contact = new ContactData().withId(randomId.getId());
     app.contact().selectContactByCheckbox(contact.getId());
@@ -54,11 +56,13 @@ public class AddContactToGroupTests extends TestBase {
 
     int afterTable = app.db().contactsInGroups();
     Contacts after = app.db().contacts();
+    Groups groupAfter = app.db().conGroup();
 
     assertThat(after.size(), equalTo(before.size()));
 
     if (beforeTable == 0) {
       Assert.assertEquals(afterTable, beforeTable + 1);
+      Assert.assertNotEquals(groupBefore, groupAfter);
     } else {
       Assert.assertEquals(beforeTable, afterTable);
     }

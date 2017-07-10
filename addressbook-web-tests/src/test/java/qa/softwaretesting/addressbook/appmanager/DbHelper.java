@@ -71,4 +71,18 @@ public class DbHelper {
     }
     return groupName;
   }
+
+  public Groups conGroup() {
+    Groups group = null;
+    Session session = sessionFactory.openSession();
+    session.beginTransaction();
+    List<ContactData> result = session.createQuery("from ContactData where deprecated = '0000-00-00'").list();
+    session.getTransaction().commit();
+    session.close();
+
+    for (ContactData contact : result) {
+      group = contact.getGroups();
+    }
+    return group;
+  }
 }

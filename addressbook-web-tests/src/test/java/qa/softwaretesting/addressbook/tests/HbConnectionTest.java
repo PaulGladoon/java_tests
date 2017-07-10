@@ -9,6 +9,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import qa.softwaretesting.addressbook.model.ContactData;
 import qa.softwaretesting.addressbook.model.GroupData;
+import qa.softwaretesting.addressbook.model.Groups;
 
 import java.util.List;
 
@@ -48,7 +49,7 @@ public class HbConnectionTest {
 
   @Test
   private void test() {
-    String size = null;
+    Groups contact1 = null;
     Session session = sessionFactory.openSession();
     session.beginTransaction();
     List<ContactData> result = session.createQuery("from ContactData where deprecated = '0000-00-00'").list();
@@ -56,7 +57,8 @@ public class HbConnectionTest {
     session.close();
 
     for (ContactData contact : result) {
-      System.out.println(contact.getGroups());
+      contact1 = contact.getGroups();
     }
+    System.out.println(contact1);
   }
 }
