@@ -51,6 +51,7 @@ public class AddContactToGroupTests extends TestBase {
     ContactData contact = new ContactData().withId(randomId.getId());
     app.contact().selectContactByCheckbox(contact.getId());
     app.contact().addContactToGroup();
+    Groups group = app.db().conGroup();
 
     Thread.sleep(1000);
 
