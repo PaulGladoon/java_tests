@@ -19,7 +19,7 @@ public class NavigationHelper extends HelperBase{
       click(By.linkText("groups"));
   }
 
-  public void gotoAddNewContactPage() {
+  public void addNewContact() {
 
     click(By.linkText("add new"));
   }
@@ -40,7 +40,7 @@ public class NavigationHelper extends HelperBase{
     click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
   }
 
-  public void gotoHomePage() {
+  public void homePage() {
     if (isElementPresent(By.id("maintable"))) {
       return;
     }

@@ -1,28 +1,51 @@
 package qa.softwaretesting.addressbook.tests;
 
-import org.testng.Assert;
+import com.google.common.reflect.TypeToken;
+import com.google.gson.Gson;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import qa.softwaretesting.addressbook.model.ContactData;
+import qa.softwaretesting.addressbook.model.Contacts;
 
-import java.util.Comparator;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ContactCreationTests extends TestBase {
 
-  @Test(enabled = false)
-  public void testContactCreation() {
-    List<ContactData> before = app.getContactHelper().getContactList();
-    app.goTo().gotoAddNewContactPage();
-    ContactData contact = new ContactData("German", "Gladoon", "test1","Nickolayevich", "Reopen", "Gogo", "DoIT", "Dobrovolskogo", "Odessa", "063", "IT", "2211", "p@p", "www.w.com", "1989", "2017", "Grree", "1122", "test");
-    app.getContactHelper().contactCreation(contact, true);
-    app.goTo().gotoHomePage();
-    List<ContactData> after = app.getContactHelper().getContactList();
-    Assert.assertEquals(after.size(), before.size() + 1);
+  @DataProvider
+  public Iterator<Object[]> validContactsFromJson() throws IOException {
+    List<Object[]> list = new ArrayList<Object[]>();
+    BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/contacts.json")));
+    String json = "";
+    String line = reader.readLine();
+    while (line != null) {
+      json += line;
+      line = reader.readLine();
+    }
+    Gson gson = new Gson();
+    List<ContactData> contacts = gson.fromJson(json, new TypeToken<List<ContactData>>(){}.getType());
+    return contacts.stream().map((g) -> new Object[] {g}).collect(Collectors.toList()).iterator();
+  }
 
-    before.add(contact);
-    Comparator<? super ContactData> byId = (c1, c2) -> Integer.compare(c1.getId(), c2.getId());
-    before.sort(byId);
-    after.sort(byId);
-    Assert.assertEquals(before, after);
+  @Test(dataProvider = "validContactsFromJson")
+  public void testContactCreation(ContactData contact) {
+    Contacts before = app.db().contacts();
+    app.goTo().addNewContact();
+    app.contact().create(contact, true);
+    app.goTo().homePage();
+    Contacts after = app.db().contacts();
+    assertThat(after.size(), equalTo(before.size() + 1));
+
+    assertThat(after, equalTo(
+            before.withAdded(contact.withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt()))));
   }
 }

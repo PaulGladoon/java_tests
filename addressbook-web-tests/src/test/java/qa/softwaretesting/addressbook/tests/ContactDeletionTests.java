@@ -1,25 +1,40 @@
 package qa.softwaretesting.addressbook.tests;
 
-import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import qa.softwaretesting.addressbook.model.ContactData;
+import qa.softwaretesting.addressbook.model.Contacts;
+import qa.softwaretesting.addressbook.model.Groups;
 
-import java.util.List;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.testng.Assert.*;
 
 public class ContactDeletionTests extends TestBase {
 
-  @Test
-  public void testContactDeletion() {
-    if (! app.getContactHelper().isThereAContact()) {
-      app.goTo().gotoAddNewContactPage();
-      app.getContactHelper().contactCreation(new ContactData("Paul", "Gladoon", "test1","Nickolayevich", "Reopen", "Gogo", "DoIT", "Dobrovolskogo", "Odessa", "063", "IT", "2211", "p@p", "www.w.com", "1989", "2017", "Grree", "1122", "test"), true);
+  @BeforeMethod
+  public void ensurePreconditions() {
+    if (app.db().contacts().size() == 0) {
+      Groups groups = app.db().groups();
+      app.goTo().addNewContact();
+      app.contact().create(new ContactData()
+              .withFirstName("Alex")
+//              .withGroup("test1")
+              .inGroup(groups.iterator().next())
+              .withMiddleName("Popovich"), true);
     }
-    app.goTo().gotoHomePage();
+  }
+
+  @Test
+  public void testContactDeletion() throws InterruptedException {
+    app.goTo().homePage();
     app.goTo().selectAllContacts();
     app.goTo().submitDeletion();
     app.goTo().acceptInDeletionWindow();
-    List<ContactData> contactListAfterDeletion = app.getContactHelper().getContactList();
-    Assert.assertEquals(contactListAfterDeletion.size(), 0);
+    Thread.sleep(1000); // Добавил из-за того что удаление из БД происходит с 1 секундной задержкой
+    Contacts contactListAfterDeletion = app.db().contacts();
+
+    assertThat(contactListAfterDeletion.size(), equalTo(0));
   }
 
 }
