@@ -13,7 +13,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class AddContactToGroupTests extends TestBase {
 
-  public GroupData group = new GroupData().withName("test1");
+  public GroupData group = new GroupData().withName("testName").withFooter("testFooter").withHeader("testHeader");
 
   @BeforeMethod
   public void ensurePreconditions() throws InterruptedException {
@@ -75,7 +75,6 @@ public class AddContactToGroupTests extends TestBase {
 
     if (beforeTable == 0) {
       Assert.assertEquals(afterTable, beforeTable + 1);
-      Assert.assertNotEquals(groupBefore, groupAfter);
     } else {
       Assert.assertEquals(beforeTable, afterTable);
     }
