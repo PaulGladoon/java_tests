@@ -61,6 +61,15 @@ public class AddContactToGroupTests extends TestBase {
     Contacts after = app.db().contacts();
     Groups groupAfter = app.db().conGroup();
 
+    int max = 0;
+    for (GroupData g : groupAfter) {
+      if (g.getId() > max) {
+        max = g.getId();
+      }
+    }
+    group.withId(max);
+    groupBefore.add(group);
+
     assertThat(groupAfter, equalTo(groupBefore.withAdded(group)));
     assertThat(after.size(), equalTo(before.size()));
 
