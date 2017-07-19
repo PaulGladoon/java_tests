@@ -13,11 +13,13 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class AddContactToGroupTests extends TestBase {
 
+  public GroupData group = new GroupData().withName("test1");
+
   @BeforeMethod
   public void ensurePreconditions() throws InterruptedException {
     if (app.db().groups().size() == 0) {
       app.goTo().groupPage();
-      app.group().create(new GroupData().withName("test1"));
+      app.group().create(group);
     }
 
     if (app.db().contactsInGroups() > 0) {
@@ -51,7 +53,7 @@ public class AddContactToGroupTests extends TestBase {
     ContactData contact = new ContactData().withId(randomId.getId());
     app.contact().selectContactByCheckbox(contact.getId());
     app.contact().addContactToGroup();
-    Groups group = app.db().conGroup();
+    //Groups group = app.db().conGroup();
 
     Thread.sleep(1000);
 
@@ -59,6 +61,7 @@ public class AddContactToGroupTests extends TestBase {
     Contacts after = app.db().contacts();
     Groups groupAfter = app.db().conGroup();
 
+    assertThat(groupAfter, equalTo(groupBefore.withAdded(group)));
     assertThat(after.size(), equalTo(before.size()));
 
     if (beforeTable == 0) {
