@@ -61,13 +61,14 @@ public class DeleteContactFromGroupTests extends TestBase {
     Groups groupAfter = app.db().conGroup();
 
     int max = 0;
-    for (GroupData g : groupAfter) {
+    for (GroupData g : groupBefore) {
       if (g.getId() > max) {
         max = g.getId();
       }
     }
     group.withId(max);
-
+    groupBefore.remove(group);
+    
     Assert.assertEquals(afterTable, beforeTable - 1);
     assertThat(groupAfter, equalTo(groupBefore.withOut(group)));
 
